@@ -22,6 +22,7 @@
             position: fixed;
             width: 100%;
             top: 0;
+            left:0px;
             z-index: 1000;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
             transition: background 0.3s;
@@ -50,7 +51,7 @@
         }
 
         .container {
-            padding: 120px 20px 20px;
+            padding: 120px 20px 20px; /* Added padding-top to account for the fixed header */
             max-width: 1200px;
             margin: auto;
         }
@@ -71,14 +72,32 @@
             text-shadow: 0 0 15px #00ffff;
             margin: 0;
         }
-        .table-responsive button{
-            margin-bottom: 10px;
-        }
+
         .table-responsive {
             background: #1f1f1f;
             border-radius: 15px;
             padding: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin-top: 7%;
+            margin-left: -7%;
+        }
+
+        .table-responsive .btn-logout {
+            background: #00ffff;
+            border-color: #00ffff;
+            color: #000;
+            font-size: 1.2em;
+            padding: 12px 25px;
+            border-radius: 50px;
+            transition: background 0.3s, transform 0.3s;
+            display: inline-block;
+            margin-bottom: 20px;
+            margin-left: 45%;
+        }
+
+        .table-responsive .btn-logout:hover {
+            background: #00b3b3;
+            transform: scale(1.1);
         }
 
         table {
@@ -108,6 +127,8 @@
         tr:hover td {
             background: #00ffff;
             color: #000;
+            transform: scale(1.05);
+            transition: transform 0.3s, background 0.3s, color 0.3s;
         }
 
         .btn-primary {
@@ -126,76 +147,24 @@
             background: #00b3b3;
             transform: scale(1.1);
         }
-        tr:hover td {
-         background: #00ffff;
-         color: #000;
-         transform: scale(1.05);
-         transition: transform 0.3s, background 0.3s, color 0.3s;
-        }
-
     </style>
 </head>
 <body>
-    <!-- <header id="navbar"> -->
-        <!-- <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container">
-                <a class="navbar-brand" href="#">Denn Top Up</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Games</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/logout">logout</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav> -->
-    <!-- </header> -->
-
     <div class="container">
         <header class="admin-header">
             <h1>Admin Dashboard</h1>
-            <li class="nav-item">
-                <a class="nav-link" href="/logout">Logout</a>
-            </li>
         </header>
 
         <div class="table-responsive">
             <h2 class="text-center mb-4" style="color: #00ffff; text-shadow: 0 0 10px #00ffff;">Transaction List</h2>
-            <br>
-           
-            <!-- <br>
-            <a href="user/viewcreate"><button class="btn btn-primary">Add New Transaction</button></a> -->
-            <!-- <br>
-            <a href="/index"><button class="btn btn-primary">Back To</button> </a> -->
-            <!-- <form class="d-flex" action="/user/search" method="post" style="margin: 0 auto; max-width: 600px;" name="search">
-                  @csrf
-                   <input class="form-control me-2 we-100" 
-                       type="search" 
-                       placeholder="Search..." 
-                       name="cari" 
-                       aria-label="Search"
-                       style="background: #1f1f1f; border: 1px solid #00ffff; color: #fff; box-shadow: 0 0 15px rgba(0, 255, 255, 0.2); border-radius: 50px; padding: 10px 20px; transition: all 0.3s ease;">
-                   <input class="btn btn-outline-light" 
-                       value="Search" 
-                       type="submit"
-                       style="background: #00ffff; color: #000; border-radius: 50px; padding: 10px 25px; margin-left: 10px; transition: all 0.3s ease;">
-            </form> -->
+            <a href="/logout" class="btn btn-logout">Logout</a>
             <table>
                 <thead>
                     <tr>
                         <th>User ID</th>
                         <th>Game Type</th>
-                        <th>Jenis_Pembayaran</th>
-                        <!-- <th>Price</th> -->
+                        <th>Jenis Pembayaran</th>
+                        <th>Amount</th>
                         <th>Transaction Date</th>
                         <th>Action</th>
                     </tr>
@@ -206,7 +175,7 @@
                         <td>{{ $item->user_id}}</td>
                         <td>{{ $item->Game_type}}</td>
                         <td>{{ $item->jenis_pembayaran}}</td>
-                        <!-- <td>{{ $item->harga}}</td> -->
+                        <td>{{ $item->amount}}</td>
                         <td>{{ $item->transaction_date}}</td>
                         <td>
                             <a href="/user/viewedit/{{ $item->id }}"><button class="btn btn-primary">Edit</button></a>
@@ -230,9 +199,9 @@
         // Change header background on scroll
         $(window).on('scroll', function() {
             if ($(window).scrollTop() > 50) {
-                $('#navbar').addClass('scrolled');
+                $('header').addClass('scrolled');
             } else {
-                $('#navbar').removeClass('scrolled');
+                $('header').removeClass('scrolled');
             }
         });
 

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('user_id');
             $table->string('Game_type');
             $table->string('jenis_pembayaran');
+            $table->integer('amount');
             $table->timestamp('transaction_date')->useCurrent();
             $table->timestamps();
         });

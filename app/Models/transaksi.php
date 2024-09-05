@@ -12,7 +12,8 @@ class transaksi extends Model
         'user_id',
         'Game_type',
         'jenis_pembayaran',
-        'transaction_date'
+        'transaction_date',
+        'amount',
        ];
 
 }

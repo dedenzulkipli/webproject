@@ -84,7 +84,15 @@
             border-color: #00ffff;
             box-shadow: 0 0 15px #00ffff;
         }
-
+        select#jenis_pembayaran{
+            background: #1f1f1f;
+            border: 1px solid #00ffff;
+            color: #fff;
+            border-radius: 50px;
+            padding: 10px 157px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+        }
         .btn-secondary {
             background: #00ffff;
             border-color: #00ffff;
@@ -129,10 +137,18 @@
                             <input type="text" class="form-control" name="Game_type" placeholder="Masukkan Game Type" value="{{ old('Game_type') }}">
                         </div>
                         <div class="form-group pt-2">
-                            <input type="text" class="form-control" name="jenis_pembayaran" placeholder="Masukkan Jenis Pembayaran" value="{{ old('jenis_pembayaran') }}">
+                          <select name="jenis_pembayaran" class="form-select" id="jenis_pembayaran" style="color: #00ffff;">
+                            <option value="jenis pembayaran" class="text-secondary" >Pilih Opsi</option>
+                            <option value="dana">dana</option>
+                            <option value="dana">alfamart</option>
+                            <option value="dana">ovo</option>
+                            <option value="dana">gopay</option>
+                            <option value="dana">indomaret</option>
+                          </select>
                         </div>
                         <div class="form-group pt-2">
-                            <input type="date" class="form-control" name="transaction_date" value="{{ old('transaction_date') }}">
+                            <input type="number" class="form-control" name="amount" placeholder="Masukan Amount" value="{{ old('amount') }}">
+
                         </div>
                         <input type="submit" class="btn btn-secondary w-100 btn-block mt-5" value="Add Transaction">
                     </form>

@@ -64,6 +64,7 @@ public function usercreate(Request $request){
         'user_id' => $request->user_id,
         'Game_type' => $request->Game_type,
         'jenis_pembayaran' => $request->jenis_pembayaran,
+        'amount' => $request->amount,
         // 'harga' => $request->harga,
         'transaction_date' => $request->transaction_date,
     ]);
@@ -101,6 +102,7 @@ public function edit(Request $request){
         'user_id' => $request->user_id,
         'Game_type' => $request->Game_type,
         'jenis_pembayaran' => $request->jenis_pembayaran,
+        'amount' => $request->amount,
         'transaction_date' => $request->transaction_date,
     ]);
     return redirect('/user');
